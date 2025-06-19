@@ -15,3 +15,14 @@ def burger_list(req):
         "burgers": burgers
     }
     return render(req, "burger_list.html", context)
+
+def burger_search(req):
+    # print(req.GET)
+    keyword = req.GET.get("keyword")
+    # print(keyword)
+
+    burgers = Burger.objects.filter(name__contains=keyword)
+    context = {
+        "burgers": burgers
+    }
+    return render(req, "burger_search.html", context)
